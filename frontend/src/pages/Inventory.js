@@ -63,7 +63,7 @@ const Inventory = () => {
       item.status,
     ]);
     
-    doc.autoTable({
+    autoTable(doc, {
       head: [['Serial #', 'Type', 'Issuer', 'Issued To', 'Location', 'Status']],
       body: tableData,
       startY: 28,
