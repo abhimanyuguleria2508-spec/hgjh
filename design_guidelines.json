@@ -1,0 +1,127 @@
+{
+  "project_name": "Kalichindi QR Code Inventory System",
+  "design_theme": "Tactical Command (Military/Industrial)",
+  "typography": {
+    "font_families": {
+      "headings": "Barlow Condensed, sans-serif",
+      "body": "Inter, sans-serif",
+      "mono": "JetBrains Mono, monospace"
+    },
+    "google_fonts_url": "https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap",
+    "usage_rules": {
+      "headings": "Uppercase, tracking-tight, font-bold (700). Use for Page Titles and Section Headers.",
+      "subheadings": "Uppercase, tracking-widest, font-medium (500), text-muted-foreground. Use for labels.",
+      "body": "Regular weight, relaxed leading. Use for general text.",
+      "data": "Monospace, font-normal. Use for Serial Numbers, QR Codes, Status Codes."
+    }
+  },
+  "colors": {
+    "palette": {
+      "background": "#0a0a0a",
+      "foreground": "#e5e5e5",
+      "primary": "#4B5320", 
+      "primary_foreground": "#ffffff",
+      "secondary": "#2F4F4F",
+      "secondary_foreground": "#ffffff",
+      "accent": "#FF8C00",
+      "accent_foreground": "#000000",
+      "muted": "#1c1c1c",
+      "muted_foreground": "#a3a3a3",
+      "border": "#27272a",
+      "input": "#18181b",
+      "ring": "#4B5320"
+    },
+    "status_colors": {
+      "serviceable": "#22c55e", 
+      "pending_repair": "#eab308", 
+      "beyond_repair": "#ef4444" 
+    },
+    "tailwind_config_extension": {
+      "colors": {
+        "olive": {
+          "500": "#4B5320",
+          "600": "#3a4119",
+          "700": "#2d3213"
+        },
+        "slate": {
+          "800": "#2F4F4F",
+          "900": "#1a2e2e"
+        },
+        "signal": {
+          "orange": "#FF8C00"
+        }
+      }
+    }
+  },
+  "visual_enhancers": {
+    "borders": "Square edges (rounded-none). 2px borders on active elements. Corner ticks on cards.",
+    "shadows": "Hard shadows (0px blur). Example: shadow-[4px_4px_0px_0px_rgba(75,83,32,0.5)]",
+    "textures": "Subtle noise overlay (opacity 0.05) on background. Scanlines on video feeds.",
+    "animations": "Instant transitions (duration-75). No bounce. Flash effects on success."
+  },
+  "layout_strategy": {
+    "grid_system": "Bento Grid Mode B (High Density).",
+    "spacing": "Dense. p-2, p-4. Gap-2 or Gap-4.",
+    "containers": "Full width on mobile, max-w-7xl centered on desktop. Dashboard uses grid-cols-1 md:grid-cols-4."
+  },
+  "components": {
+    "buttons": {
+      "base_style": "rounded-none font-mono uppercase tracking-widest border-2 border-olive-500 bg-olive-500/10 hover:bg-olive-500 hover:text-white transition-colors duration-100",
+      "primary": "bg-olive-500 text-white hover:bg-olive-600",
+      "destructive": "border-red-500 text-red-500 hover:bg-red-500 hover:text-white"
+    },
+    "cards": {
+      "base_style": "rounded-none border border-zinc-800 bg-zinc-950/50 p-4 relative overflow-hidden",
+      "decoration": "Add a 4px colored strip on the left based on status (Green/Yellow/Red)."
+    },
+    "inputs": {
+      "base_style": "rounded-none border-b-2 border-zinc-700 bg-transparent px-3 py-2 text-sm focus:border-olive-500 focus:outline-none focus:ring-0 font-mono"
+    },
+    "tables": {
+      "base_style": "w-full border-collapse text-sm font-mono",
+      "header": "border-b-2 border-zinc-700 bg-zinc-900/50 text-left uppercase tracking-wider text-muted-foreground p-3",
+      "row": "border-b border-zinc-800 hover:bg-zinc-900/50 transition-colors"
+    }
+  },
+  "libraries": {
+    "icons": "lucide-react (Use crisp, geometric icons like Shield, Target, Crosshair, Box, QrCode)",
+    "qr_generation": "qrcode.react",
+    "qr_scanning": "html5-qrcode (Web-based, works on mobile browser)",
+    "pdf_export": "jspdf, jspdf-autotable",
+    "offline_storage": "idb (IndexedDB wrapper for offline-first capability)",
+    "toast": "sonner"
+  },
+  "image_urls": {
+    "background_texture": "https://images.unsplash.com/photo-1693479140895-bf7cfa45a99b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2Nzd8MHwxfHNlYXJjaHw0fHxkYXJrJTIwY2FyYm9uJTIwZmliZXIlMjB0ZXh0dXJlJTIwbWlsaXRhcnklMjB0YWN0aWNhbCUyMGJhY2tncm91bmR8ZW58MHx8fHwxNzcxMzI5MzQ0fDA&ixlib=rb-4.1.0&q=85",
+    "usage": "Use as a subtle background-image overlay with mix-blend-mode: overlay and opacity-10 on the main dashboard container."
+  },
+  "offline_strategy_instructions": {
+    "overview": "The app must function 100% offline. Use IndexedDB via 'idb' library.",
+    "db_schema": {
+      "name": "inventory_db",
+      "version": 1,
+      "stores": [
+        { "name": "items", "keyPath": "id", "indexes": ["serial_number", "status"] },
+        { "name": "sync_queue", "keyPath": "id", "autoIncrement": true }
+      ]
+    },
+    "logic": "1. App Load: Try fetching from API. If error, fetch from IDB. 2. Create/Edit: Try API. If error, save to IDB 'items' AND 'sync_queue'. 3. Online Reconnect: Process 'sync_queue' items to API."
+  },
+  "universal_guidelines": [
+    "Do not use gradients. Use solid, matte colors.",
+    "Use 'Barlow Condensed' for all headings. Import it in index.css.",
+    "Ensure high contrast. White text on black background is default.",
+    "All interactive elements must have `data-testid`.",
+    "Forms must use `react-hook-form` + `zod` validation.",
+    "Dates must be formatted as 'DD MMM YYYY HH:mm' (Military Time) using date-fns.",
+    "Show a 'OFFLINE MODE' banner (Red/Yellow) when network is disconnected."
+  ],
+  "instructions_to_main_agent": [
+    "1. Install missing dependencies: `yarn add qrcode.react html5-qrcode jspdf jspdf-autotable idb`.",
+    "2. Update `tailwind.config.js` with the colors and fonts defined above.",
+    "3. Create a `Layout` component that wraps the app with the Offline status indicator and Navigation.",
+    "4. Implement the `InventoryContext` or `useInventory` hook to handle the Offline/Online logic abstractly.",
+    "5. Build the Dashboard with the Bento Grid layout.",
+    "6. Ensure the Camera Scanner handles permission errors gracefully."
+  ]
+}
