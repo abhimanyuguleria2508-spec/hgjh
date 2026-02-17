@@ -214,6 +214,7 @@ export const InventoryProvider = ({ children }) => {
     isOnline,
     loading,
     fetchItems,
+    fetchStats,
     createItem,
     updateItem,
     deleteItem,
