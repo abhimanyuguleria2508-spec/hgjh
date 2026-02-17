@@ -6,8 +6,8 @@ import { format } from 'date-fns';
 import ItemForm from '../components/ItemForm';
 import ItemDetail from '../components/ItemDetail';
 import { toast } from 'sonner';
-import jsPDF from 'jspdf';
-import 'jspdf-autotable';
+import { jsPDF } from 'jspdf';
+import autoTable from 'jspdf-autotable';
 
 const Inventory = () => {
   const [searchParams, setSearchParams] = useSearchParams();
