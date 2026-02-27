@@ -11,6 +11,7 @@ const Layout = ({ children }) => {
     { path: '/', label: 'Dashboard', icon: Shield },
     { path: '/inventory', label: 'Inventory', icon: Box },
     { path: '/scanner', label: 'QR Scanner', icon: QrCode },
+    { path: '/model', label: 'Model App', icon: FileText },
   ];
 
   return (
